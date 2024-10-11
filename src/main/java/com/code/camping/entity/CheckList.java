@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Builder
+@Table(name = "checklist")
 public class CheckList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +20,10 @@ public class CheckList {
 
     private String name;
 
-    @OneToMany(mappedBy = "checklist", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CheckListItem> items = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "checklist", cascade = CascadeType.ALL)
+    private List<CheckListItem> items;
 }
