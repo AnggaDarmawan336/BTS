@@ -1,7 +1,7 @@
 package com.code.BTS.controller;
 
 import com.code.BTS.entity.CheckList;
-import com.code.BTS.service.impl.CheckListService;
+import com.code.BTS.service.impl.CheckListServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,23 +15,23 @@ import java.util.List;
 public class ChecklistController {
 
     @Autowired
-    private CheckListService checkListService;
+    private CheckListServiceImpl checkListServiceImpl;
 
     @GetMapping
     public ResponseEntity<List<CheckList>> getAllChecklists() {
-        List<CheckList> checklists = checkListService.getAllChecklists();
+        List<CheckList> checklists = checkListServiceImpl.getAllChecklists();
         return ResponseEntity.ok(checklists);
     }
 
     @PostMapping
     public ResponseEntity<CheckList> createChecklist(@RequestBody CheckList checklist) {
-        CheckList createdChecklist = checkListService.createChecklist(checklist);
+        CheckList createdChecklist = checkListServiceImpl.createChecklist(checklist);
         return ResponseEntity.status(201).body(createdChecklist);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteChecklist(@PathVariable Long id) {
-        checkListService.deleteChecklist(id);
+        checkListServiceImpl.deleteChecklist(id);
         return ResponseEntity.noContent().build();
     }
 }

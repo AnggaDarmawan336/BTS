@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CheckListItemService {
+public class CheckListItemServiceImpl {
     @Autowired
     private CheckListItemRepository checklistItemRepository;
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CheckListService {
+public class CheckListServiceImpl {
     private CheckListRepository checklistRepository;
 
     public List<CheckList> getAllChecklists() {
