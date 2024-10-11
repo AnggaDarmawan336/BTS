@@ -12,9 +12,9 @@ import lombok.*;
 public class CheckListRequest {
     private String name;
 
-    public static CheckList fromCheckListToUserMapper(CheckListRequest checkListRequest){
+    public CheckList convert(){
         return CheckList.builder()
-                .name(checkListRequest.getName())
+                .name(name)
                 .build();
     }
 }

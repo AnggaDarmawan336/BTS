@@ -8,4 +8,5 @@ import com.code.BTS.utils.dto.response.LoginUserResponse;
 public interface UserService {
     User create(RegisterUserRequest request);
     LoginUserResponse login(LoginUserRequest request);
+    User getById(String id);
 }

@@ -8,8 +8,10 @@ import com.code.BTS.utils.dto.request.LoginUserRequest;
 import com.code.BTS.utils.dto.request.RegisterUserRequest;
 import com.code.BTS.utils.dto.response.LoginUserResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
 
 @Service
 @AllArgsConstructor
@@ -43,5 +45,11 @@ public class UserServiceImpl implements UserService {
         } catch (Exception error) {
             return loginResponse;
         }
+    }
+
+    @Override
+    public User getById(String id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new HttpServerErrorException(HttpStatus.NOT_FOUND, "User with id " + id + " is not found"));
     }
 }

@@ -11,10 +11,10 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
-    private final String jwtSignatureSecret = "java-incubation-25-final-project-team-2";
+    private static final String jwtSignatureSecret = "java-incubation-25-final-project-team-2";
     private final int jwtExpirationInMs = 1000 * 60 * 60 * 24;
 
-    public SecretKey getSigningKey(){
+    public static SecretKey getSigningKey(){
         return Keys.hmacShaKeyFor(jwtSignatureSecret.getBytes());
     }
 
@@ -26,7 +26,7 @@ public class JwtUtils {
                 .signWith(getSigningKey()).compact();
     }
 
-    public Claims decodeAccessToken(String accessToken){
+    public static Claims decodeAccessToken(String accessToken){
         return Jwts.parser().verifyWith(getSigningKey())
                 .build().parseSignedClaims(accessToken).getPayload();
     }

@@ -8,8 +8,7 @@ import org.springframework.data.domain.Pageable;
 public interface CheckListService {
     CheckList create(CheckListRequest request);
     Page<CheckList> getAll(Pageable pageable, CheckListRequest request);
-    CheckList getById(String id);
+    CheckList getById(Long id);
     CheckList update(CheckList request);
-    void delete(String id);
-    CheckList fineByUserId(String userId);
+    void delete(Long id);
 }
